@@ -22,7 +22,8 @@ textarea{
 }
 
 .description{
-  white-space: pre-wrap;
+  text-align: left;
+  padding: 10px;
 }
 
 .time-block{
