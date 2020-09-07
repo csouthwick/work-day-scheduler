@@ -7,7 +7,33 @@ var loadSchedule = function () {
     var description = localStorage.getItem(hour) || "";
     $(this).find(".description").text(description);
   });
+
+  updateTimeBlockStatus();
 }
+
+// update past, prestent, and future color coding
+var updateTimeBlockStatus = function () {
+  // get the current time but set the minutes, seconds, and milliseconds to 0 to make the comparison easier
+  var now = moment().minute(0).second(0).millisecond(0);
+
+  // check each time bock and set the past/present/future status appropriately
+  $(".time-block").each(function () {
+    // remove any previously added past/present/future classes
+    $(this).removeClass("past present future");
+
+    var hour = $(this).find(".hour div").text().trim();
+    hour = moment(hour, "hA");
+    var difference = hour.diff(now, "hours");
+
+    if (difference < 0) {
+      $(this).addClass("past");
+    } else if (difference > 0) {
+      $(this).addClass("future");
+    } else {
+      $(this).addClass("present");
+    }
+  });
+};
 
 // task description was clicked
 $(document).on("click", ".description", function () {
