@@ -11,10 +11,10 @@ var loadSchedule = function () {
   updateTimeBlockStatus();
 }
 
-// update past, prestent, and future color coding
+// update past, present, and future color coding
 var updateTimeBlockStatus = function () {
-  // get the current time but set the minutes, seconds, and milliseconds to 0 to make the comparison easier
-  var now = moment().minute(0).second(0).millisecond(0);
+  // get the current time but at the start of the hour to make the comparison easier
+  var now = moment().startOf("hour");
 
   // check each time bock and set the past/present/future status appropriately
   $(".time-block").each(function () {
@@ -33,6 +33,20 @@ var updateTimeBlockStatus = function () {
       $(this).addClass("present");
     }
   });
+};
+
+// auto update the past, present, and future color coding exactly on the hour
+var initCheckTime = function () {
+  var nextHour = moment().startOf("hour").add(1, "hour");
+  // milliseconds to next hour + 1 second to account for slight differences in time
+  var msToGo = nextHour.diff(moment()) + 1000;
+
+  setTimeout(function () {
+    // Next hour has been reached. Update the block status
+    updateTimeBlockStatus();
+    // Set interval to check once every hour after this
+    setInterval(updateTimeBlockStatus, (1000 * 60 * 60));
+  }, msToGo);
 };
 
 // task description was clicked
@@ -74,3 +88,4 @@ $(document).on("click", ".saveBtn", function () {
 
 
 loadSchedule();
+initCheckTime();
