@@ -13,4 +13,4 @@ A simple work day planner with persistance thanks to localStorage. Color-codes e
 https://csouthwick.github.io/work-day-scheduler/
 
 ## Screenshot
-![screenshot of the code quiz site](./assets/images/Screenshot_2020-09-06_Work_Day_Scheduler.png)
+![screenshot of the work day scheduler site](./assets/images/Screenshot_2020-09-06_Work_Day_Scheduler.png)
