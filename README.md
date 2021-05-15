@@ -1,5 +1,5 @@
 # Work Day Scheduler
-A simple work day planner with persistance thanks to localStorage. Color-codes each block depending on if it is in the past, present, or future.
+A simple work day planner with persistence thanks to localStorage. Color-codes each block depending on if it is in the past, present, or future.
 
 ## Built With
 * HTML
